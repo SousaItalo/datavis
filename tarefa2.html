@@ -1,0 +1,151 @@
+<html>
+  <head>
+    <title>Movies</title>
+		<meta charset="utf-8"/>
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+
+    <script>
+      $(function(){
+        $('#container').highcharts({
+          chart: {
+            type: 'column'
+          },
+          title:{
+            text: 'Oscars por filmes'
+          },
+          series: [{
+              name:'No Country for old man',
+              data: [4]
+            },{
+              name: 'The Kings Speech',
+              data: [4]
+            },{
+              name: 'Slumdog Millionaire',
+              data: [3]
+            },{
+              name: 'The Artist',
+              data: [3]
+            },{
+              name: 'The Hurt Locker',
+              data: [3]
+            },{
+              name: 'Milk',
+              data: [2]
+            },{
+              name: 'The Fighter',
+              data: [2]
+            },{
+              name: 'Beginners',
+              data: [1]
+            },{
+              name: 'Inglorius Basterds',
+              data: [1]
+            },{
+              name: 'The Dark Knight',
+              data: [1]
+            },{
+              name: 'Juno',
+              data: [1]
+            },{
+              name: 'Miachel Clayton',
+              data: [1]
+            },{
+              name: 'Midnight in Paris',
+              data: [1]
+            },{
+              name: 'Rattatouille',
+              data: [1]
+            },{
+              name: 'The Blind Side',
+              data: [1]
+            },{
+              name: 'The Help',
+              data: [1]
+            },{
+              name: 'There will be blood',
+              data: [1]
+            },{
+              name: 'Up',
+              data: [1]
+            },{
+              name: 'WALL-E',
+              data: [1]
+          }]
+        });
+      });
+      $(function(){
+        $('#container2').highcharts({
+          chart: {
+            type: 'bar'
+          },
+          title:{
+            text: 'Faturamento dos filmes que receberam Oscars'
+          },
+          series: [{
+              name:'No Country for old man',
+              data: [4]
+            },{
+              name: 'The Kings Speech',
+              data: [4]
+            },{
+              name: 'Slumdog Millionaire',
+              data: [3]
+            },{
+              name: 'The Artist',
+              data: [3]
+            },{
+              name: 'The Hurt Locker',
+              data: [3]
+            },{
+              name: 'Milk',
+              data: [2]
+            },{
+              name: 'The Fighter',
+              data: [2]
+            },{
+              name: 'Beginners',
+              data: [1]
+            },{
+              name: 'Inglorius Basterds',
+              data: [1]
+            },{
+              name: 'The Dark Knight',
+              data: [1]
+            },{
+              name: 'Juno',
+              data: [1]
+            },{
+              name: 'Miachel Clayton',
+              data: [1]
+            },{
+              name: 'Midnight in Paris',
+              data: [1]
+            },{
+              name: 'Rattatouille',
+              data: [1]
+            },{
+              name: 'The Blind Side',
+              data: [1]
+            },{
+              name: 'The Help',
+              data: [1]
+            },{
+              name: 'There will be blood',
+              data: [1]
+            },{
+              name: 'Up',
+              data: [1]
+            },{
+              name: 'WALL-E',
+              data: [1]
+          }]
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="container2"></div>
+  </body>
+</html>
