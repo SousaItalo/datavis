@@ -143,10 +143,32 @@
           }]
         });
       });
+        
+    $(function(){
+        $('#container3').highcharts({
+          chart: {
+            type: 'line'
+          },
+          title:{
+            text: 'Quantidade de filmes por tipo de enredo'
+          },
+          xAxis:{
+            categories: ['2007', '2008', '2009', '2010', '2011']  
+          },
+          series: [{
+                name:'Comedy',
+                data: [8, 15, 27, 22, 14]
+            },{
+                name:'Discovery',
+                data: [5, 9, 5, 6, 11]
+          }]
+        });
+      });    
     </script>
   </head>
   <body>
     <div id="container"></div>
     <div id="container2"></div>
+    <div id="container3"></div>  
   </body>
 </html>
