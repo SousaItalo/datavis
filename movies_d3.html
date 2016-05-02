@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>movies_d3</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <h1>Bilheteria</h1>
+    <div id="bilheteria"></div>
+    <h1>Orçamento</h1>
+    <div id="orcamento"></div>
+    <h1>Lucro</h1>
+    <div id="lucro"></div>
+    <script>
+
+      function render(data, id, comparetor, graphType, divider, color){
+        //enter
+        d3.select(id).selectAll("div.h-bar")
+          .data(data)
+          .enter().append("div")
+          .attr("class", "h-bar")
+          .append("span");
+
+        //Update
+        d3.select(id).selectAll("div.h-bar")
+          .data(data)
+          .attr("class","h-bar")
+          .style("width", function(d){
+            if(graphType == "profit"){
+              return (d.Worldwide_Gross_M - d.Budget_M)/divider + "px";
+            }else {
+              return d[graphType]/divider + "px";
+            }
+          })
+          .style("background-color", color)
+          .select("span")
+            .text(function(d){
+              return d.Film;
+            });
+
+        //exit
+        d3.select(id).selectAll("div.h-bar")
+          .data(data)
+          .exit().remove();
+
+        if(comparetor)
+          d3.select(id)
+            .selectAll("div.h-bar")
+            .sort(comparetor);
+
+      }
+      var compareByWorldwide_Gross = function(a, b){
+        return a.Worldwide_Gross_M > b.Worldwide_Gross_M? -1 : 1;
+      };
+
+      var compareByBudget = function(a, b){
+        return a.Budget_M > b.Budget_M? -1 : 1;
+      }
+
+      var compareByProfit = function(a, b){
+        return (a.Worldwide_Gross_M - a.Budget_M) > (b.Worldwide_Gross_M - b.Budget_M)? -1 : 1 ;
+      };
+
+      //getting json
+      d3.json("movies.json", function(error, json){
+        //calling render function
+        render(json,"#bilheteria",compareByWorldwide_Gross, "Worldwide_Gross_M", 3, "#56BADB");
+        render(json,"#orcamento", compareByBudget, "Budget_M", 0.5,  "#2B66A1");
+        render(json,"#lucro", compareByProfit, "profit", 3,  "#11A6A6");
+      });
+    </script>
+  </body>
+</html>
