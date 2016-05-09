@@ -1,0 +1,78 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<title>movies_d3_dc</title>
+
+    	<link rel="stylesheet" href="css/dc.css">
+    	<link rel="stylesheet" href="css/styles.css">
+
+			<script src="js/crossfilter.js" charset="utf-8"></script>
+    	<script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    	<script src="js/dc.js" charset="utf-8"></script>
+	</head>
+	<body>
+
+		<div id="bilheteria"></div>
+
+		<div id="genero"></div>
+
+		<script>
+
+			var chart1 = dc.barChart("#bilheteria");
+			var chart2 = dc.barChart("#genero");
+
+			d3.json("movies.json", function(error, data){
+
+				//formatando dados
+				data.forEach(function(d){
+					d.Year = +d.Year;
+					d.Worldwide_Gross_M = +d.Worldwide_Gross_M;
+				});
+
+				//criando crossfilter
+				var movies = crossfilter(data);
+
+				//criando dimensão anos
+				var dateDim = movies.dimension(function(d){
+					return d.Year;
+				});
+
+				//criando dimensão generos
+				var genDim = movies.dimension(function(d){
+						return d.Genre;
+				});
+
+				//Criando grupos
+				var worldWideByYear = dateDim.group().reduceSum(function(d){
+					return d.Worldwide_Gross_M;
+				});
+
+				var worldWideByGenre = genDim.group().reduceSum(function(d){
+					return d.Worldwide_Gross_M;
+				});
+
+				chart1.width(800)
+							.height(400)
+							.margins({top: 30, right: 50, bottom: 25, left: 40})
+							.x(d3.scale.linear().domain([dateDim.bottom(1)[0].Year - 0.5, dateDim.top(1)[0].Year + 0.5]))
+							.brushOn(false)
+							.centerBar(true)
+							.dimension(dateDim)
+							.group(worldWideByYear)
+							.xAxisLabel("Bilheteria por Ano")
+							.xAxis().tickFormat(d3.format("d"));
+
+				chart2.width(800)
+							.height(400)
+							.margins({top: 30, right: 50, bottom: 25, left: 40})
+							.x(d3.scale.ordinal().domain(data.map(function(d) {return d.Genre;})))
+							.dimension(genDim)
+							.group(worldWideByGenre)
+							.xAxisLabel("Bilheteria por Gênero")
+							.xUnits(dc.units.ordinal);
+
+    		dc.renderAll();
+			});
+		</script>
+	</body>
+</html>

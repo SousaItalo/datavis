@@ -1,0 +1,76 @@
+<html>
+	<head>
+		<title>Movies</title>
+		<meta charset="utf-8"/>
+		<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> 
+        <script src="http://code.highcharts.com/highcharts.js"></script>     
+		<script>
+			$(function(){
+				$('#container').highcharts({
+					chart: {
+						type: 'column'
+					},
+					title: {
+						text: 'Movies'
+					},
+					xAxis: {
+						categories: ['Worldwide', 'Domestic', 'Brazil', 'South Korea']
+					},
+					series: [{
+							name: 'The Godfather',
+							data: [245066411, 134966411, 0, 121323]
+						},{
+							name: 'Inception',
+							data: [825532764, 292576195, 10315556, 38705828]
+						},{
+							name: 'Interstellar',
+							data: [675120017, 188020017, 5059875, 68974677]
+						},{
+							name: 'The Martian',
+							data: [630161890, 228433663, 7513748, 32104850]
+						},{
+							name: 'Back To The Future',
+							data: [381109762, 210609762, 0, 79133]	
+					}]
+				});
+			});
+			
+			$(function(){
+				$('#container2').highcharts({
+					chart: {
+						type: 'line'
+					},
+					title: {
+						text: 'Arrecadação das bilheterias na semana de estreia'
+					},
+					xAxis: {
+						categories: ['1° dia', '2° dia', '3° dia', '4° dia', '5° dia', '6° dia', '7° dia']
+					},
+					yAxis: {
+						title: {
+							text: 'Valor arrecadado (US$) corrigido pela inflação'
+						}
+					},
+					series: [{
+							name: 'Inception',
+							data: [21782199, 21791608, 19211530, 10185365, 9765137, 8859322, 8563251]
+						},{
+							name: 'Interstellar',
+							data: [1350209, 801244, 16871009, 18292991, 12346360, 5274857, 6900370]
+						},{
+							name: 'The Martian',
+							data: [18145681, 22251765, 13911129, 4401171, 5457240, 3741530, 3801813]
+						},{
+							name: 'Back To The Future',
+							data: [4239400, 4564800, 8971400, 10502200, 7857800, 4384800]
+					}]
+				});
+			});
+			
+		</script>
+	</head>
+	<body>
+		<div id="container"></div> 
+		<div id="container2"></div>
+	</body>
+</html>
